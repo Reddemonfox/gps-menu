@@ -31,9 +31,9 @@ title: GBS The Barbequers
 sections:
   - title: Main Course
     blurbs:
-      - image: /img/apple-touch-icon.png
+      - image: /img/products-grid3.jpg
         name: Dish Name
-        description: Description
+        description: Description this is the descriot
         price: "1232"
 main:
   heading: Great coffee with no compromises

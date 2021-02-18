@@ -7,13 +7,7 @@ import Features from '../components/Features'
 import BlogRoll from '../components/BlogRoll'
 
 export const IndexPageTemplate = ({
-                                      image,
-                                      title,
-                                      heading,
-                                      subheading,
-                                      mainpitch,
-                                      description,
-                                      intro,
+                                     sections
                                   }) => (
     <div>
         <div
@@ -22,6 +16,7 @@ export const IndexPageTemplate = ({
                 backgroundImage: `url(https://www.gbsthebarbequers.in/wp-content/uploads/2021/01/GBS-Banner-scaled.jpg)`,
                 backgroundPosition: `top left`,
                 backgroundAttachment: `fixed`,
+                height: '300px'
             }}
         >
             <div
@@ -70,7 +65,7 @@ export const IndexPageTemplate = ({
                     <div className="columns">
                         <div className="column is-10 is-offset-1">
                             <div className="content">
-                                <Features gridItems={intro.blurbs}/>
+                                <Features sections={sections}/>
                             </div>
                         </div>
                     </div>
@@ -80,42 +75,18 @@ export const IndexPageTemplate = ({
     </div>
 )
 
-IndexPageTemplate.propTypes = {
-    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-    title: PropTypes.string,
-    heading: PropTypes.string,
-    subheading: PropTypes.string,
-    mainpitch: PropTypes.object,
-    description: PropTypes.string,
-    intro: PropTypes.shape({
-        blurbs: PropTypes.array,
-    }),
-}
 
 const IndexPage = ({data}) => {
     const {frontmatter} = data.markdownRemark
 
+    console.log(frontmatter);
     return (
         <Layout>
             <IndexPageTemplate
-                image={frontmatter.image}
-                title={frontmatter.title}
-                heading={frontmatter.heading}
-                subheading={frontmatter.subheading}
-                mainpitch={frontmatter.mainpitch}
-                description={frontmatter.description}
-                intro={frontmatter.intro}
+                sections={frontmatter.sections}
             />
         </Layout>
     )
-}
-
-IndexPage.propTypes = {
-    data: PropTypes.shape({
-        markdownRemark: PropTypes.shape({
-            frontmatter: PropTypes.object,
-        }),
-    }),
 }
 
 export default IndexPage
@@ -125,22 +96,9 @@ export const pageQuery = graphql`
     markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
       frontmatter {
         title
-        image {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        heading
-        subheading
-        mainpitch {
-          title
-          description
-        }
-        description
-        intro {
-          blurbs {
+        sections {
+            title
+            blurbs {
             image {
               childImageSharp {
                 fluid(maxWidth: 240, quality: 64) {
@@ -148,10 +106,10 @@ export const pageQuery = graphql`
                 }
               }
             }
-            text
+            price
+            name
+            description
           }
-          heading
-          description
         }
       }
     }

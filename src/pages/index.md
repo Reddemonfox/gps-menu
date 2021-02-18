@@ -35,6 +35,10 @@ sections:
         name: Dish Name
         description: Description this is the descriot
         price: "1232"
+      - image: /img/blog-index.jpg
+        name: Dish 2
+        description: Descir
+        price: "213"
 main:
   heading: Great coffee with no compromises
   description: >

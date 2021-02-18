@@ -1,0 +1,22 @@
+.menu-item {
+  display: flex;
+  flex-direction: row;
+
+  .image {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+
+    img {
+      width: 100px;
+      height: 100px;
+      min-width: 100px;
+    }
+  }
+
+  .description-section {
+    padding: 0 10px;
+  }
+}

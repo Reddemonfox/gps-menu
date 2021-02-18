@@ -5,7 +5,7 @@ import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 const FeatureGrid = ({sections}) => (
     <div>
         {
-            sections.map((section)=>{
+            sections ? sections.map((section) => {
                 return <>
                     <div className="heading-light">
                         {section.title}
@@ -15,13 +15,15 @@ const FeatureGrid = ({sections}) => (
                         {section.blurbs.map((item) => (
                             <div key={item.text} className="column is-6">
                                 <section className="section menu-item" style={{padding: 0}}>
-                                    <div className="has-text-centered image" style={{  backgroundImage: `url(${
+                                    <div className="has-text-centered image" style={{
+                                        backgroundImage: `url(${
                                             item.image.childImageSharp
                                                 ? item.image.childImageSharp.fluid.src
                                                 : item.image
                                         })`,
                                         backgroundPosition: `center`,
-                                        height: '100pxpx'}}>
+                                        height: '100pxpx'
+                                    }}>
                                     </div>
                                     <div className="description-section">
                                         <div className="title">
@@ -43,7 +45,7 @@ const FeatureGrid = ({sections}) => (
                         ))}
                     </div>
                 </>
-            })
+            }) : <></>
         }
     </div>
 )
